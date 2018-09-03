@@ -8,32 +8,9 @@
 var passport = require('passport');
 const jwToken = require('jsonwebtoken');
 tokenSecret = 'mysecret'
-// var bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
 	signin: async function(req, res){
-		// var email = req.param('mail');
-		// var password = req.param('pword');
-
-		// if(!email){
-		// 	return res.badRequest(new Error('No mail specified'));
-		// }
-
-		// var mail = await User.findOne({emailAddress: email});
-
-		// if(!mail){
-		// 	res.status(403);
-		// 	return res.send('Not Found');
-		// }
-
-		// bcrypt.compare(password, mail.password, function(err, res){
-		// 	if(!res){
-		// 		return done({message: 'Credentials not found'})
-		// 	}
-		// 	return done('Successful')
-		// })
-
-
 		passport.authenticate('local', {session: false}, function(err, user, info){
 			if(err || !user){
 				res.status(403);
@@ -57,14 +34,7 @@ module.exports = {
 			country : req.body.country,
 			password : req.body.password
 		}
-		// if(!emailAddress || emailAddress== ' '){
-		// 	var emailError = [
-		// 		{
-		// 			name: 'Email Required',
-		// 			message: 'Why would you want to register without an email'
-		// 		}]
-		// }
-		// req.session.flash = { err: emailError}
+	
 		User.findOrCreate({emailAddress: details.emailAddress}, details)
 		.exec(async(err, userExists, createUser)=>{
 			if(err){
@@ -73,13 +43,65 @@ module.exports = {
 				return res.send(err);
 			}
 			if(createUser){
-				//res.status(200);
-				// var token = jwToken.generateToken(createUser);
-				// var user = jwToken.getCleanUser(createUser)
-				//return res.json(200, {user: 'Created Successfully', token: jwToken.issue({id: createUser.id})});
-				return res.json(
-					//user: createUser,
-					jwToken.issue(createUser)
+				// var twilio = require('twilio');
+				// var accountSid = 'ACf31ec4d84cb67a260277c41dd5c4be7c';
+				// var authToken = 'e392928a870e85bc94825d546f867be3'
+				// var client = new twilio(accountSid, authToken);
+
+				// client.messages.create({
+				// 	body: `Hello, ${createUser.firstName}, from NAJ`,
+				// 	to: createUser.phone,
+				// 	from: '+15867880990'
+				// })
+				// .then(message=> console.log('Twilio - ', message.sid));
+
+
+				// const AWS = require('aws-sdk');
+
+				// AWS.config.update({
+				// 	acesssKeyId: 'AKIAIP6DUUXB7SUIRZVQ',
+				// 	secreteKeyId: '9/NyYd1G5gKRBxcGCG+qs0RPlR7lkDsHhP+hb0CX',
+				// 	region: 'us-east-1'
+				// });
+
+				// const ses = new AWS.SES({apiVersion: '2010-12-01'});
+				// const params = {
+				// 	Destination: {
+				// 		ToAddresses: ['jesax013@gmail.com']
+				// 	},
+				// 	ConfigurationSetName: 'Feedback',
+				// 	Message: {
+				// 		Body: {
+				// 			Html: {
+				// 				Charset: 'UTF-8',
+				// 				Data: '<html><body><h1>Hello Jessica</h1></body></html>'
+				// 			},
+				// 			Text: {
+				// 				Charset: 'UTF-8',
+				// 				Data: 'Hello Jessica Sample description'
+				// 			}
+				// 		},
+				// 		Subject: {
+				// 			Charset: 'UTF-8',
+				// 			Data: 'Order Confirmation'
+				// 		}
+				// 	},
+				// 	Source: 'jesax013@gmail.com'
+				// }
+
+				// const sendEmail = ses.sendEmail(params).promise();
+
+				// sendEmail
+				// 	.then(data => {
+				// 		console.log('Email submitted to SES', data);
+				// 	})
+				// 	.catch(error => {
+				// 		console.log(error)
+				// 	});	
+
+				return res.send(
+					'Success'
+					//jwToken.issue(createUser)
 				)
 			}else{
 				return res.send('User already exists');
@@ -88,15 +110,8 @@ module.exports = {
 	},
 
 	signout: (req, res)=>{
-		req.session.destroy();
 		req.logout();
-		res.redirect('/login');
-
-	},
-
-    check: function(req, res) {
-        return res.json();
-    }
+	}
 }  
 
 

@@ -34,8 +34,8 @@ module.exports.datastores = {
 
   someMongodb:{
     adapter: require('sails-mongo'),
-    url: 'mongodb://root@localhost/rstore'
-
+    // url: 'mongodb://root@localhost/rstore'
+    url: "mongodb://store:store-user1@ds141972.mlab.com:41972/store",
   }
 
   

@@ -28,15 +28,7 @@ module.exports = {
       description: 'Full representation of the user\'s name',
       maxLength: 30,
       example: 'Lisa Microwave van der Jenny'
-    },
-
-      country: {
-        type: 'string',
-        columnName: 'country',
-        required: true,
-        maxLength: 20
-      },
-    
+    },    
 
     emailAddress: {
       type: 'string',
@@ -45,6 +37,16 @@ module.exports = {
       //isEmail: true,
       maxLength: 50,
       example: 'jessica@yahoo.com'
+    },
+
+    address: {
+        type: 'string',
+       // required: true
+      },
+
+    phone: {
+      type: 'number',
+      //required: true,
     },
 
     password: {

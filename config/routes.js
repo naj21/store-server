@@ -19,9 +19,9 @@ module.exports.routes = {
   // 'GET /login':           {view: 'components/login'},
   // 'GET /register':           {view: 'components/register'},
   // 'GET /shop':           {view: 'components/shop'},
-  '/signup': 'UserController.register',
-  '/signin': 'UserController.signin',
-  '/order': 'LaptopController.items'
+  'POST /signup': 'UserController.register',
+  'POST /signin': 'UserController.signin',
+  'POST /order':  'LaptopController.items'
 
 
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
