@@ -41,12 +41,12 @@ module.exports = {
 
     address: {
         type: 'string',
-       // required: true
+       required: true
       },
 
     phone: {
       type: 'number',
-      //required: true,
+      required: true,
     },
 
     password: {

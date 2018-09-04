@@ -13,7 +13,11 @@ module.exports = {
   		quantity: req.body.quantity
   	}
   	
-  	await Laptop.create(item).fetch();
+  	await Laptop.create({
+  		name : req.body.name,
+  		price: req.body.price,
+  		quantity: req.body.quantity
+  	});
 
   	
   		sails.log(error)
