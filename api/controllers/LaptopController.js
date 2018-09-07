@@ -6,21 +6,15 @@
  */
 
 module.exports = {
-  items: async function(req, res){
-  	let item = {
-  		name : req.body.name,
-  		price: req.body.price,
-  		quantity: req.body.quantity
-  	}
-  	
-  	await Laptop.create(item).fetch();
 
-  	
-  		sails.log(error)
-  		res.json(error)
+  async createItem(req, res) {
+    try {
+      const item = await Laptop.create(req.body).fetch();
 
-  	  	// res.status(201);
+      res.status(201).json({ sucess: true, message: 'iteam created', data: item });
+    } catch (error) {
+      res.status(400).json({ sucess: false, message: 'error creating item', error });
+    }
+  },
 
-	}
-
-}
+};

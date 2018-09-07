@@ -6,40 +6,26 @@
  */
 
 module.exports = {
-    datastore: 'someMongodb',
+  datastore: 'someMongodb',
   attributes: {
-
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     name: {
-        type: 'string',
-        required: true
+      type: 'string',
+      required: true,
     },
 
     price: {
-        type: 'number',
-        required: true
+      type: 'number',
+      required: true,
     },
 
     quantity: {
-        type: 'number',
-        defaultsTo: 1
+      type: 'number',
+      defaultsTo: 1,
     },
-
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-
-
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     owner: {
-        model: 'user'
-    }
+      model: 'user',
+    },
 
   },
 
 };
-

@@ -3,7 +3,7 @@
  *
  * A user who can log in to this application.
  */
- var bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
 
@@ -11,42 +11,38 @@ module.exports = {
 
   attributes: {
 
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-     firstName: {
+    firstName: {
       type: 'string',
       required: true,
       description: 'Full representation of the user\'s name',
       maxLength: 30,
-      example: 'Lisa Microwave van der Jenny'
-    }, 
+      example: 'Lisa Microwave van der Jenny',
+    },
 
     lastName: {
       type: 'string',
       required: true,
       description: 'Full representation of the user\'s name',
       maxLength: 30,
-      example: 'Lisa Microwave van der Jenny'
-    },    
+      example: 'Lisa Microwave van der Jenny',
+    },
 
     emailAddress: {
       type: 'string',
       required: true,
       unique: true,
-      //isEmail: true,
       maxLength: 50,
-      example: 'jessica@yahoo.com'
+      example: 'jessica@yahoo.com',
     },
 
     address: {
-        type: 'string',
-       // required: true
-      },
+      type: 'string',
+      // required: true
+    },
 
     phone: {
       type: 'number',
-      //required: true,
+      // required: true,
     },
 
     password: {
@@ -58,35 +54,23 @@ module.exports = {
       example: '2$28a8eabna301089103-13948134nad',
     },
 
-
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
-   
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     order: {
       collection: 'laptop',
-      via: 'owner'
-    }    
-
-  },
-  customToJSON: function(){
-      return _.omit(this, ['password'])
+      via: 'owner',
     },
 
-  beforeCreate: function(user, cb){
-    bcrypt.genSalt(10, function(err, salt){
-      bcrypt.hash(user.password, salt, null, function(err, hash){
-        if(err){
-          console.log(err)
-        }else{
+  },
+  beforeCreate(user, cb) {
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(user.password, salt, null, (err, hash) => {
+        if (err) {
+          console.log(err);
+        }else {
           user.password = hash;
         }
         cb();
-      })
-    })
+      });
+    });
   },
 
 };
