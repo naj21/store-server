@@ -18,5 +18,5 @@ module.exports.routes = {
   // 'GET /shop':           {view: 'components/shop'},
   '/signup': 'UserController.register',
   '/signin': 'UserController.signin',
-  'POST /order' : 'LaptopController.createItem'
+  'POST /order' : 'LaptopController.items'
 };
